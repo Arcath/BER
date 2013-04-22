@@ -1,4 +1,4 @@
-# Ber.rb
+# Ber.rb [![Build Status](https://travis-ci.org/Arcath/BER.png?branch=master)](https://travis-ci.org/Arcath/BER)
 
 Implementation of Basic Encoding Rules (BER) in ruby
 
@@ -12,7 +12,7 @@ Or add as a dependency to your gem
 
 ## Usage
 
-TODO: Write usage instructions here
+Adds a `to_ber` to the supported classes.
 
 ## Contributing
 
