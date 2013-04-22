@@ -33,4 +33,18 @@ describe Ber do
     decoded[:length].should eq long_string(200).length
     decoded[:value].should eq long_string(200)
   end
+  
+  it "should be able to decode a number" do
+    number = 15
+    decoded = Ber.decode(number.to_ber)
+    decoded[:identifier].should eq :fixnum
+    decoded[:length].should eq 1
+    decoded[:value].should eq number
+    
+    number = 258
+    decoded = Ber.decode(number.to_ber)
+    decoded[:identifier].should eq :fixnum
+    decoded[:length].should eq 2
+    decoded[:value].should eq number
+  end
 end
