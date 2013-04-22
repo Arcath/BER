@@ -11,6 +11,8 @@ Gem::Specification.new do |gem|
   gem.description   = %q{An implementation of BER (Basic Encoding Rules) in Ruby}
   gem.summary       = %q{TODO: Write a gem summary}
   gem.homepage      = ""
+  
+  gem.add_development_dependency "rspec"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
