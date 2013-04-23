@@ -55,4 +55,20 @@ describe Ber do
     decoded[:length].should eq 9
     decoded[:value].should eq number
   end
+  
+  it "should be able to decode a true value" do
+    bool = true
+    decoded = Ber.decode(bool.to_ber)
+    decoded[:identifier].should eq :boolean
+    decoded[:length].should eq 1
+    decoded[:value].should eq bool
+  end
+  
+  it "should be able to decode a false value" do
+    bool = false
+    decoded = Ber.decode(bool.to_ber)
+    decoded[:identifier].should eq :boolean
+    decoded[:length].should eq 1
+    decoded[:value].should eq bool
+  end
 end

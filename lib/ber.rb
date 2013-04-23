@@ -1,6 +1,7 @@
 require "ber/version"
 
 require "ber/bignum"
+require "ber/boolean"
 require "ber/fixnum"
 require "ber/string"
 
@@ -43,6 +44,8 @@ module Ber
           value = hex_total.to_i(16)
         end
       end
+    elsif identifier == :boolean
+      value = (value == Zero ? false : true)
     end
     {identifier: identifier, length: length, value: value}
   end
