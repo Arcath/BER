@@ -1,5 +1,6 @@
 require "ber/version"
 
+require "ber/bignum"
 require "ber/fixnum"
 require "ber/string"
 
@@ -29,8 +30,18 @@ module Ber
       if length == 1
         value = value.unpack('C').first
       else
-        padded_value = "#{Zero * (4 - value.length)}#{value}"
-        value = padded_value.unpack('N').first
+        if value.length < 4
+          padded_value = "#{Zero * (4 - value.length)}#{value}"
+          value = padded_value.unpack('N').first
+        else
+          hex_total = ""
+          value.split("").each do |char|
+            hex = char.ord.to_s(16)
+            hex_total << "0" if hex.length == 1
+            hex_total << hex
+          end
+          value = hex_total.to_i(16)
+        end
       end
     end
     {identifier: identifier, length: length, value: value}

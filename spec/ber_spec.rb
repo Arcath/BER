@@ -47,4 +47,12 @@ describe Ber do
     decoded[:length].should eq 2
     decoded[:value].should eq number
   end
+  
+  it "should be able to decode a big num" do
+    number = (2 ** 65)
+    decoded = Ber.decode(number.to_ber)
+    decoded[:identifier].should eq :fixnum
+    decoded[:length].should eq 9
+    decoded[:value].should eq number
+  end
 end
