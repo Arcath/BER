@@ -3,6 +3,10 @@ module Ber
     def to_ber(identifier = :string)
       "#{[Ber::Identifiers[identifier]].pack('C')}#{encoded_length}#{self}"
     end
+    
+    def ber?
+      self[0].ord < 30
+    end
   
     private
   
