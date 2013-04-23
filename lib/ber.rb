@@ -1,5 +1,6 @@
 require "ber/version"
 
+require "ber/array"
 require "ber/bignum"
 require "ber/boolean"
 require "ber/fixnum"
@@ -8,12 +9,13 @@ require "ber/string"
 module Ber
   Zero = [0].pack('C')
   Identifiers = {
-    end_of_content: 0,
-    boolean: 1,
-    fixnum: 2,
-    bit_string: 3,
-    ocet_string: 4,
-    null: 5,
+    end_of_content: 0x0,
+    boolean: 0x1,
+    fixnum: 0x2,
+    bit_string: 0x3,
+    ocet_string: 0x4,
+    null: 0x5,
+    array: 0x30,
     
     # Quick shorthands
     string: 4
@@ -46,6 +48,13 @@ module Ber
       end
     elsif identifier == :boolean
       value = (value == Zero ? false : true)
+    elsif identifier == :array 
+      values = []
+      found = value.scan(/(..[A-z]*)/) # This WILL NOT work for Bignums or strings of over 127 in length TODO: Fix this
+      found.each do |v|
+        values << Ber.decode(v.first)[:value]
+      end
+      value = values
     end
     {identifier: identifier, length: length, value: value}
   end

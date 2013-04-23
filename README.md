@@ -1,4 +1,4 @@
-# Ber.rb [![Build Status](https://travis-ci.org/Arcath/BER.png?branch=master)](https://travis-ci.org/Arcath/BER)
+# BER [![Build Status](https://travis-ci.org/Arcath/BER.png?branch=master)](https://travis-ci.org/Arcath/BER)
 
 Implementation of Basic Encoding Rules (BER) in ruby
 
@@ -6,13 +6,20 @@ Implementation of Basic Encoding Rules (BER) in ruby
 
 Install via Rubygems:
 
-    $ gem install ber.rb
+    $ gem install ber
 	
 Or add as a dependency to your gem 
 
 ## Usage
 
-Adds a `to_ber` to the supported classes.
+Adds a `to_ber` to the supported classes e.g.
+
+    "Foo".to_ber
+	>> "\x04\x03foo"
+
+Which in BER means that the supplied data is a string of length 3.
+
+BER extends all the supported classes so all you need to do is require it somewhere in your gem.
 
 ## Contributing
 

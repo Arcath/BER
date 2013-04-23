@@ -71,4 +71,12 @@ describe Ber do
     decoded[:length].should eq 1
     decoded[:value].should eq bool
   end
+  
+  it "should be able to decode an array" do
+    array = ["foo", "bar"]
+    decoded = Ber.decode(array.to_ber)
+    decoded[:identifier].should eq :array
+    decoded[:length].should eq 10
+    decoded[:value].should eq array
+  end
 end
