@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Arcath"]
   gem.email         = ["adam@arcath.net"]
   gem.description   = %q{An implementation of BER (Basic Encoding Rules) in Ruby}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.summary       = %q{An implementation of BER (Basic Encoding Rules) in Ruby}
+  gem.homepage      = "https://github.com/Arcath/BER"
   
   gem.add_development_dependency "rspec"
 
